@@ -1,2 +1,2 @@
 # SYBtech_OOP_lab
-oop assignment programs
+OOP assignment programs
