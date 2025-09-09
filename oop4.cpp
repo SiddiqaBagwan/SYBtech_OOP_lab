@@ -1,0 +1,84 @@
+/* Name: Siddiqa Bagwan
+PRN: B24CE1093
+ASSIGNMENT 4: Designing of Complex Number calculator*/
+
+#include <iostream>
+using namespace std;
+class Complex {
+float x;
+float y;
+public:
+Complex operator+(Complex); //Member function
+friend Complex operator*(Complex, Complex); //Friend function
+//Overload operators << and >>
+friend istream& operator>>(istream&,Complex&);
+friend ostream& operator<<(ostream&,Complex&);
+};
+Complex Complex::operator+(Complex c) {
+Complex temp;
+temp.x = x + c.x;
+temp.y = y + c.y;
+return temp;
+}
+Complex operator*(Complex c1,Complex c2) {
+Complex temp;
+temp.x = c1.x * c2.x - c1.y * c2.y;
+temp.y = c1.x * c2.y + c1.y * c2.x;
+return temp;
+}
+
+//Function definition
+istream& operator>>(istream& in, Complex& c) {
+cout<<"Enter real number:";
+in>>c.x;
+cout<<"Enter imaginary number: ";
+in>>c.y;
+return in;
+}
+ostream& operator<<(ostream& out, Complex& c) {
+out<<"="<<c.x<<"+";
+out<<c.y<<"i";
+return out;
+}
+
+int main() {
+Complex c1, c2, c3, c4;
+char ch1;
+cout << "Enter first complex number\n";
+cin >> c1;
+cout << c1;
+cout << "\n\nEnter second complex number\n";
+cin >> c2;
+cout << c2;
+
+do {
+int choice;
+cout << "\n======= MENU =======\n";
+cout << "1. Add the two complex numbers\n";
+cout << "2. Multiply the two complex numbers\n";
+cout << "3. Exit\n";
+cout << "Enter your choice: ";
+cin >> choice;
+switch(choice) {
+case 1:
+c3 = c1 + c2;
+cout << "\nSum of the two complex numbers " << c3 <<
+endl;
+break;
+case 2:
+c4 = c1 * c2;
+cout << "\nProduct of the two complex numbers " << c4 <<
+endl;
+break;
+case 3:
+cout << "\nExiting program" << endl;
+return 0;
+default:
+cout << "\nInvalid choice! Try again." << endl;
+}
+cout << "\nDo you want to continue? (y/n): ";
+cin >> ch1;
+} while(ch1 == 'y' || ch1 == 'Y');
+cout << "\nExiting program" << endl;
+return 0;
+}
